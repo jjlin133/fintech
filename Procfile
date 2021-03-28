@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath currency currency.wsgi
+web: gunicorn --pythonpath fintech fintech.wsgi
