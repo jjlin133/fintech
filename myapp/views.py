@@ -37,13 +37,17 @@ def callback(request):
                 mtext = event.message.text
                 if mtext=='@匯率查詢說明':  #顯示使用說明
                     func.sendUse(event)
+                elif mtext=='@臺大醫院資訊查詢':  #顯示使用說明
+                    func.sendUseNTUH(event)
+                elif mtext=='@銀行多樣選單':  #顯示使用說明
+                    func.sendUseBank(event)
                 elif mtext=='@北歐貿易':  #北歐貿易連結網
                     func.neuWeb(event)
                 elif mtext=='@理財試算':  #理財試算連結網
                     func.finWeb(event)
 
                 else:  #一般性輸入
-                    func.sendTWder(event, mtext)
+                    func.sendQnA(event, mtext)
 
         return HttpResponse()
     else:
