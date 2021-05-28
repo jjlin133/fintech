@@ -14,4 +14,4 @@ class ntuhqna(models.Model):
     ans = models.CharField(max_length=250,null=False)
     
     def _str_(self):
-        return self.qid
+        return self.id
