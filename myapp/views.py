@@ -87,14 +87,14 @@ def fv2(request):
 
 # Create your views here.
 def listall_ntuhqa(request):  
-	ntuhqas = ntuhqna.objects.all().order_by('id')  #讀取資料表, 依 qid 遞增排序
+	ntuhqas = ntuhqna.objects.all().order_by('qid')  #讀取資料表, 依 qid 遞增排序
 	return render(request, "listall_ntuhqa.html", locals())
 
 # 查詢 from ntuhqa
 def select_qnalist(request):
 	title = request.POST.get('title',False)
 	if title == '常見問題&答覆':
-		select_qnas = ntuhqna.objects.all().order_by('id')  #讀取資料表, 依 qid 遞增排序
+		select_qnas = ntuhqna.objects.all().order_by('qid')  #讀取資料表, 依 qid 遞增排序
 	else:
 		select_qnas = ntuhqna.objects.filter( Q(title__icontains=title))
 	return render(request,'select_qnas.html', {'select_qnas': select_qnas})
