@@ -114,7 +114,7 @@ def sendUseNTUH(event):  #@台大醫院查詢說明
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
  # 增加 函式 一般性文字輸入查詢 
- def sendQnA(event, mtext):  
+def sendQnA(event, mtext):  
      try:
          if ntuhqna.objects.filter(title=mtext).exists():
              text1 = "您的提問&答覆如下：\n"
