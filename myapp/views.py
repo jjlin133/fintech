@@ -15,6 +15,9 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent
 from module import func
+
+##########################################
+# add the follows from linebotQnA\qnaapi\views.py
 from myapp.models import ntuhqna
 from django.db.models import Q
 
