@@ -117,33 +117,4 @@ def sendUseNTUH(event):  #@台大醫院查詢說明
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
  # 增加 函式 一般性文字輸入查詢 
- def sendQnA(event, mtext):  #一般性文字輸入查詢
-    try:
-        if ntuhqna.objects.filter(title=mtext).exists():
-	    text1 = "您的提問&答覆如下：\n"
-	    que_temp = ntuhqna.objects.get(title=mtext)
-	    que = que_temp.que
-	    text1 += "\n 【提問】>>>> \n" + que + "\n" 
-	    ans = que_temp.ans
-	    text1 += "\n 【答覆】>>>>> \n" + ans
-	    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text1))
-        elif mtext in keys:		
-	    rate_date = twder.now(currencies[mtext])[0]
-	    cashBuy = float(twder.now(currencies[mtext])[1])  #現金買入_匯率
-	    cashSell = float(twder.now(currencies[mtext])[2])  #現金賣出_匯率
-	    checkBuy = float(twder.now(currencies[mtext])[3])  #即期買入_匯率
-	    checkSell = float(twder.now(currencies[mtext])[4])  #即期賣出_匯率
-	    message = rate_date + '\n' + mtext + '_台灣銀行端匯率'
-	    message = message + '\n 現金買入 : ' + str(cashBuy)
-	    message = message + '\n 現金賣出 : ' + str(cashSell)
-	    message = message + '\n 即期買入 : ' + str(checkBuy)
-	    message = message + '\n 即期賣出 : ' + str(checkSell)				
-	    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
-        else:
-	    message = TextSendMessage(
-		text = '很抱歉，資料庫中無適當解答！\n請再輸入問題。'  
-            )
-        line_bot_api.reply_message(event.reply_token,message)
-    except:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))     
-        
+         
