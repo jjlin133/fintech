@@ -116,14 +116,14 @@ def sendUseNTUH(event):  #@台大醫院查詢說明
  # 增加 函式 一般性文字輸入查詢 
 def sendQnA(event, mtext):  
      try:
-         if ntuhqna.objects.filter(title=mtext).exists():
+         if mtuhqna.objects.filter(title=mtext).exists():
              text1 = "您的提問&答覆如下：\n"
              que_temp = ntuhqna.objects.get(title=mtext)
              que = que_temp.que
              text1 += "\n 【提問】>>>> \n" + que + "\n"
              ans = que_temp.ans
              text1 += "\n 【答覆】>>>>> \n" + ans
-             ine_bot_api.reply_message(event.reply_token, TextSendMessage(text=text1))
+             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text1))
             
          elif mtext in keys:
              rate_date = twder.now(currencies[mtext])[0]
