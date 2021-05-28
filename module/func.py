@@ -5,7 +5,7 @@ import requests
 import twder  #匯率套件
 
 import http.client, json
-from qnaapi.models import users,ntuhqna
+from myapp.models import users,ntuhqna
 
 from linebot import LineBotApi, WebhookParser
 
