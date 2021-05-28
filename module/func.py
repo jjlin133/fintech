@@ -124,7 +124,6 @@ def sendUseNTUH(event):  #@台大醫院查詢說明
 	    que_temp = ntuhqna.objects.get(title=mtext)
 	    que = que_temp.que
 	    text1 += "\n 【提問】>>>> \n" + que + "\n" 
-#	        que_temp = ntuhqna.objects.get(title=mtext)
 	    ans = que_temp.ans
 	    text1 += "\n 【答覆】>>>>> \n" + ans
 	    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text1))
