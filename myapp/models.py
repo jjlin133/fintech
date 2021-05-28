@@ -10,7 +10,7 @@ class users(models.Model):
 # 連結至 db.sqlite3 之資料表 myapp_ntuhqna
 class ntuhqna(models.Model):
     title = models.CharField(max_length=50,null=False)
-    que = models.CharField(max_length=128,null=False)
+    que = models.CharField(max_length=180,null=False)
     ans = models.CharField(max_length=250,null=False)
     
     def _str_(self):
