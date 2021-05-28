@@ -4,6 +4,11 @@ from linebot.models import TextSendMessage
 import requests
 import twder  #匯率套件
 
+import http.client, json
+from qnaapi.models import users,ntuhqna
+
+from linebot import LineBotApi, WebhookParser
+
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
 currencies = {'美金':'USD','港幣':'HKD','英鎊':'GBP','澳幣':'AUD',\
@@ -94,3 +99,53 @@ def finWeb(event):  #網頁連結
         line_bot_api.reply_message(event.reply_token,message)
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+
+# 增加 函式 臺大醫院查詢說明 
+def sendUseNTUH(event):  #@台大醫院查詢說明
+    try:
+        text1 ='''
+這是台大醫院的疑難解答，
+請輸入關於台大醫院相關問題主題。
+
+例如 : 諮詢專線 、 病症掛科、看診時間
+               '''
+        message = TextSendMessage(
+            text = text1
+        )
+        line_bot_api.reply_message(event.reply_token,message)
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+
+ # 增加 函式 一般性文字輸入查詢 
+ def sendQnA(event, mtext):  #一般性文字輸入查詢
+    try:
+        if ntuhqna.objects.filter(title=mtext).exists():
+	        text1 = "您的提問&答覆如下：\n"
+	        que_temp = ntuhqna.objects.get(title=mtext)
+	        que = que_temp.que
+	        text1 += "\n 【提問】>>>> \n" + que + "\n" 
+#	        que_temp = ntuhqna.objects.get(title=mtext)
+	        ans = que_temp.ans
+	        text1 += "\n 【答覆】>>>>> \n" + ans
+	        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text1))
+        elif mtext in keys:
+		
+	        rate_date = twder.now(currencies[mtext])[0]
+	        cashBuy = float(twder.now(currencies[mtext])[1])  #現金買入_匯率
+	        cashSell = float(twder.now(currencies[mtext])[2])  #現金賣出_匯率
+	        checkBuy = float(twder.now(currencies[mtext])[3])  #即期買入_匯率
+	        checkSell = float(twder.now(currencies[mtext])[4])  #即期賣出_匯率
+	        message = rate_date + '\n' + mtext + '_台灣銀行端匯率'
+	        message = message + '\n 現金買入 : ' + str(cashBuy)
+	        message = message + '\n 現金賣出 : ' + str(cashSell)
+	        message = message + '\n 即期買入 : ' + str(checkBuy)
+	        message = message + '\n 即期賣出 : ' + str(checkSell)				
+	        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+        else:
+	        message = TextSendMessage(
+				text = '很抱歉，資料庫中無適當解答！\n請再輸入問題。'  
+            )
+        line_bot_api.reply_message(event.reply_token,message)
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))     
+        
