@@ -143,3 +143,29 @@ def sendQnA(event, mtext):
         line_bot_api.reply_message(event.reply_token,message)
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+
+# 增加 銀行 快速選單 
+def sendQuickreply(event):  #快速選單
+    try:
+        message = TextSendMessage(
+            text='台灣銀行外匯_快速選單',
+            quick_reply=QuickReply(
+                items=[
+                    QuickReplyButton(
+                        action=MessageAction(label="最新牌告匯率連結", text="https://rate.bot.com.tw/xrt?Lang=zh-TW&redirect=true")
+                    ),
+                    QuickReplyButton(
+                        action=MessageAction(label="美金_最近一個營業日匯率趨勢", text="https://rate.bot.com.tw/xrt/quote/day/USD")
+                    ),
+                    QuickReplyButton(
+                        action=MessageAction(label="SAS", text="SAS_專業的統計分析軟體")
+                    ),
+                    QuickReplyButton(
+                        action=MessageAction(label="SPSS", text="SPSS_社會科學領域的統計分析軟體")
+                    ),
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token,message)
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
