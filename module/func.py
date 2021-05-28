@@ -158,10 +158,10 @@ def sendQuickreply(event):  #快速選單
                         action=MessageAction(label="美金_最近一個營業日匯率趨勢", text="https://rate.bot.com.tw/xrt/quote/day/USD")
                     ),
                     QuickReplyButton(
-                        action=MessageAction(label="SAS", text="SAS_專業的統計分析軟體")
+                        action=MessageAction(label="美金_最近三個月走勢圖", text="https://rate.bot.com.tw/xrt/quote/ltm/USD")
                     ),
                     QuickReplyButton(
-                        action=MessageAction(label="SPSS", text="SPSS_社會科學領域的統計分析軟體")
+                        action=MessageAction(label="美金_最近6個月走勢圖", text="https://rate.bot.com.tw/xrt/quote/l6m/USD")
                     ),
                 ]
             )
