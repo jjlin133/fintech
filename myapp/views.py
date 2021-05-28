@@ -52,7 +52,7 @@ def callback(request):
                     func.finWeb(event)
 
                 else:  #一般性輸入
-                    func.sendQA(event, mtext) #func.sendTWder -- 原始可執行的函式
+                    func.sendTWder(event, mtext) #func.sendTWder -- 原始可執行的函式
 
         return HttpResponse()
     else:
