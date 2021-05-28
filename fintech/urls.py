@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^hello3/(\w+)/$', hello3), 
     url(r'^hello4/(\w+)/$', hello4),
     url(r'^fv/$', fv),		
-    url(r'^fv2/$', fv2),	
+    url(r'^fv2/$', fv2),
+    url(r'^listall_ntuhqa/$', views.listall_ntuhqa),
+    path('select_qnalist/',views.select_qnalist),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
