@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>台大醫院資訊查詢</title>
+		<! css定義_自動調整HTML表格單元格的大小以適合文本大小>
+		<! css定義_表格自動換行，避免撐開>
+
+		<style>	
+	input[type=text], select {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	  font-size: 20px; //字型大小
+	}
+
+	input[type=submit] {
+	  width: 100%;
+	  background-color: #1E90FF;
+	  color: white;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  font-family:DFKai-sb; /*標楷體*/
+	  font-size: 20px; //字型大小
+	}
+
+	input[type=submit]:hover {
+	  background-color: #6495ED;
+	}
+
+	div {
+	  border-radius: 5px;
+	  background-color: #f2f2f2;
+	  padding: 20px;
+	  font-family:Times New Roman; /*Times New Roman*/
+	  font-size: 20px;
+	}
+
+		
+.rwd-table {
+　min-width: 100%;
+　background: #fff;
+　overflow: hidden;
+  position:relative;
+  top:30px;
+  left:20px;
+  right:30px"
+}
+
+.rwd-table tr:nth-of-type(2n){
+　background: #eee;
+}
+
+.rwd-table th,
+.rwd-table td {
+　margin: 0.5em 1em;
+  text-align: left;
+}
+
+.rwd-table th {
+　display: block;
+  border: 1px solid green;
+  color:red;  
+}
+
+.rwd-table td {
+　display: block;
+  border: 1px solid green; 
+}
+
+.rwd-table td:before {
+　content: attr(data-th) " : ";
+　font-weight: bold;
+　width: 6.5em;
+　display: inline-block;
+}
+
+.rwd-table th, .rwd-table td:before {
+　color: #D20B2A;
+　font-weight: bold;
+}
+
+@media (min-width: 480px) {
+.rwd-table td:before {
+　display: none;
+}
+.rwd-table th, .rwd-table td {
+　display: table-cell;
+　padding: 0.25em 0.5em;
+}
+.rwd-table th:first-child,
+.rwd-table td:first-child {
+　padding-left: 0;
+}
+.rwd-table th:last-child,
+.rwd-table td:last-child {
+　padding-right: 0;
+}
+.rwd-table th,
+.rwd-table td {
+　padding: 1em !important;
+}
+}
+</style>
+</head>
+<body style="background-color:lightblue">
+               
+<form action="" method="POST">{% csrf_token %}
+<table  style="position:absolute;top:20px;left:20px;font-family:標楷體; font-size:20px;" >
+	<th><h2>台大醫院資訊查詢(問題類別)</h2></th>			 
+	<tr>
+		<td><select name="title">
+		 <option value="">常見問題&答覆</option>
+		 <option value="諮詢專線">諮詢專線</option>
+		 <option value="病症掛科">病症掛科</option>
+		 <option value="看診時間">看診時間</option>
+		 <option value="掛號額滿">掛號額滿</option>
+		 <option value="轉診">轉診</option>
+		 <option value="開立診斷書">開立診斷書</option>
+		</select></td><br><br><br>
+		<td><input type="submit" value="查詢"></td><br>
+		</tr>
+</table>					
+</form>
+			
+<br><br><br>
+<table border="1" class="rwd-table">
+    <th>類別</th>
+	<th>提問</th>
+	<th>答覆</th>
+	
+	    {% for ntuhqa in select_qnas %} 
+	<tr>
+		<td>{{ntuhqa.title}}  </td>
+		<td>{{ntuhqa.que}}  </td>
+		<td>{{ntuhqa.ans}}  </td>
+    </tr>	
+ {% endfor %} 
+
+</table>
+
+</body>
+</html>

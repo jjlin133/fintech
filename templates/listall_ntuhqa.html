@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>台大醫院QnA</title>
+		
+		<! css定義_自動調整HTML表格單元格的大小以適合文本大小>
+		<! css定義_表格自動換行，避免撐開>
+
+		<style>		
+.rwd-table {
+　min-width: 100%;
+　background: #fff;
+　overflow: hidden;
+}
+
+.rwd-table tr:nth-of-type(2n){
+　background: #eee;
+}
+
+.rwd-table th,
+.rwd-table td {
+　margin: 0.5em 1em;
+  text-align: left;
+}
+
+.rwd-table th {
+　display: block;
+  border: 1px solid green;
+  color:red;  
+}
+
+.rwd-table td {
+　display: block;
+  border: 1px solid green; 
+}
+
+.rwd-table td:before {
+　content: attr(data-th) " : ";
+　font-weight: bold;
+　width: 6.5em;
+　display: inline-block;
+}
+
+.rwd-table th, .rwd-table td:before {
+　color: #D20B2A;
+　font-weight: bold;
+}
+
+@media (min-width: 480px) {
+.rwd-table td:before {
+　display: none;
+}
+.rwd-table th, .rwd-table td {
+　display: table-cell;
+　padding: 0.25em 0.5em;
+}
+.rwd-table th:first-child,
+.rwd-table td:first-child {
+　padding-left: 0;
+}
+.rwd-table th:last-child,
+.rwd-table td:last-child {
+　padding-right: 0;
+}
+.rwd-table th,
+.rwd-table td {
+　padding: 1em !important;
+}
+}
+</style>
+</head>
+		
+	<body>
+		<h2>顯示 ntuhqa 資料表--台大醫院QnA所有資料</h2>
+<table class="rwd-table">
+			<tr>
+					<th> 編號 </th>
+					<th> 類別 </th>
+					<th> 提問 </th>
+					<th> 答覆 </th>
+			</tr>
+			{% for ntuhqa in ntuhqas %}
+				<tr>
+					<td data-th="編號">{{ ntuhqa.id }} </td>
+					<td data-th="類別">{{ ntuhqa.title }} </td>
+					<td data-th="提問">{{ ntuhqa.que }} </td>
+					<td data-th="答覆">{{ ntuhqa.ans}} </td>
+				</tr>
+			{% endfor %}
+
+</table>
+	</body>
+</html>
+	
