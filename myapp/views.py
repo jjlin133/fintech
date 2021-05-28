@@ -45,7 +45,7 @@ def callback(request):
                 elif mtext=='@臺大醫院資訊查詢':  #顯示使用說明
                     func.sendUseNTUH(event)
                 elif mtext=='@銀行多樣選單':  #顯示使用說明
-                    func.sendUseBank(event)
+                    func.sendQuickreply(event)
                 elif mtext=='@北歐貿易':  #北歐貿易連結網
                     func.neuWeb(event)
                 elif mtext=='@理財試算':  #理財試算連結網
