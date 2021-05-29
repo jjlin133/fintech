@@ -177,16 +177,16 @@ def sendQuickreply(event):  #快速選單
 #傳送聲音
 def sendMedia(event):  #傳送影音
     try:
-#        messageAudio = AudioSendMessage(
-#            original_content_url=baseurl + 'mario.m4a',  #聲音檔置於static資料夾
-#            duration=20000  #聲音長度20秒
-#        )
-#        line_bot_api.reply_message(event.reply_token,messageAudio)
-        messageVideo = VideoSendMessage(
-            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
-            preview_image_url=baseurl + 'robot.jpg'
+        messageAudio = AudioSendMessage(
+            original_content_url=baseurl + 'mario.m4a',  #聲音檔置於static資料夾
+            duration=20000  #聲音長度20秒
         )
-        line_bot_api.reply_message(event.reply_token,messageVideo)        
+        line_bot_api.reply_message(event.reply_token,messageAudio)
+#        messageVideo = VideoSendMessage(
+#            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
+#            preview_image_url=baseurl + 'robot.jpg'
+#        )
+#        line_bot_api.reply_message(event.reply_token,messageVideo)        
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
         
