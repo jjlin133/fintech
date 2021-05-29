@@ -50,7 +50,7 @@ def callback(request):
                     func.neuWeb(event)
                 elif mtext=='@理財試算':  #理財試算連結網
                     func.finWeb(event)
-		elif mtext=='@傳送影音':
+		elif mtext=='@FinTech影音連結':
 		    func.sendMedia(event)
 
                 else:  #一般性輸入
