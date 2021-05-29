@@ -138,11 +138,11 @@ def sendQnA(event, mtext):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
         else:  
             message = TextSendMessage(
-                text = '很抱歉，資料庫中無適當解答！\n請再輸入問題。' 
+                text = '' 
             )
         line_bot_api.reply_message(event.reply_token,message)
     except:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=''))
 
 # 增加 銀行 快速選單 
 def sendQuickreply(event):  #快速選單
