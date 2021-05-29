@@ -186,7 +186,12 @@ def sendMedia(event):  #傳送影音
             original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
             preview_image_url=baseurl + 'robot.jpg'
         )
-        line_bot_api.reply_message(event.reply_token,[messageAudio,messageVideo])
+        messageImage = ImageSendMessage(
+            original_content_url=baseurl + 'pome.png',  #照片檔置於static資料夾
+            preview_image_url=baseurl + 'pome.png'
+        )
+  
+        line_bot_api.reply_message(event.reply_token,[messageAudio,messageVideo,messageImage])
 
 #        messageVideo = VideoSendMessage(
 #            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
