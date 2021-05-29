@@ -9,6 +9,8 @@ from myapp.models import users,ntuhqna
 
 from linebot import LineBotApi, WebhookParser
 
+# 增加 套件 & 展示影音
+from linebot.models import AudioSendMessage, VideoSendMessage
 baseurl = 'https://fintech2021.herokuapp.com/static/'
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
