@@ -181,12 +181,12 @@ def sendMedia(event):  #傳送影音
             original_content_url=baseurl + 'mario.m4a',  #聲音檔置於static資料夾
             duration=20000  #聲音長度20秒
         )
-        line_bot_api.reply_message(event.reply_token,messageAudio)
-        messageAudio2 = AudioSendMessage(
-            original_content_url=baseurl + 'mario.m4a',  #聲音檔置於static資料夾
-            duration=20000  #聲音長度20秒
+#        line_bot_api.reply_message(event.reply_token,messageAudio)
+        messageVideo = VideoSendMessage(
+            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
+            preview_image_url=baseurl + 'robot.jpg'
         )
-        line_bot_api.reply_message(event.reply_token,messageAudio2)
+        line_bot_api.reply_message(event.reply_token,[messageAudio,messageVideo])
 
 #        messageVideo = VideoSendMessage(
 #            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
