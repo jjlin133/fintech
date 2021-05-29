@@ -9,6 +9,8 @@ from myapp.models import users,ntuhqna
 
 from linebot import LineBotApi, WebhookParser
 
+baseurl = 'https://fintech2021.herokuapp.com/static/'
+
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
 currencies = {'美金':'USD','港幣':'HKD','英鎊':'GBP','澳幣':'AUD',\
@@ -169,3 +171,21 @@ def sendQuickreply(event):  #快速選單
         line_bot_api.reply_message(event.reply_token,message)
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+ 
+#傳送聲音
+def sendMedia(event):  #傳送影音
+    try:
+#        messageAudio = AudioSendMessage(
+#            original_content_url=baseurl + 'mario.m4a',  #聲音檔置於static資料夾
+#            duration=20000  #聲音長度20秒
+#        )
+#        line_bot_api.reply_message(event.reply_token,messageAudio)
+        messageVideo = VideoSendMessage(
+            original_content_url=baseurl + 'robot.mp4',  #影片檔置於static資料夾
+            preview_image_url=baseurl + 'robot.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token,messageVideo)        
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+        
+        
